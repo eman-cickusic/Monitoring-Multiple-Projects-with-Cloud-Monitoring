@@ -1,0 +1,20 @@
+{
+  "displayName": "DemoGroup uptime check",
+  "resource": {
+    "type": "uptime_url",
+    "groups": [
+      "projects/PROJECT_ID/groups/DemoGroup_ID"
+    ]
+  },
+  "tcpCheck": {
+    "port": 22
+  },
+  "period": "60s",
+  "timeout": "10s",
+  "contentMatchers": [],
+  "selectedRegions": [
+    "USA",
+    "EUROPE",
+    "ASIA_PACIFIC"
+  ]
+}

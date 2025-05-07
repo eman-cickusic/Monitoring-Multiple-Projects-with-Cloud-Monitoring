@@ -1,0 +1,104 @@
+{
+  "displayName": "Multi-Project VM Monitoring Dashboard",
+  "gridLayout": {
+    "columns": "2",
+    "widgets": [
+      {
+        "title": "VM Instance Uptime",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"compute.googleapis.com/instance/uptime\" resource.type=\"gce_instance\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN"
+                  }
+                },
+                "unitOverride": "s"
+              },
+              "plotType": "LINE"
+            }
+          ],
+          "yAxis": {
+            "label": "Uptime (seconds)",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Uptime Check Results",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"compute.googleapis.com/instance/uptime_check/check_passed\" resource.type=\"gce_instance\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN"
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE"
+            }
+          ],
+          "yAxis": {
+            "label": "Check Status (1=Pass, 0=Fail)",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "CPU Utilization by VM",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"compute.googleapis.com/instance/cpu/utilization\" resource.type=\"gce_instance\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_MEAN"
+                  }
+                },
+                "unitOverride": "1"
+              },
+              "plotType": "LINE"
+            }
+          ],
+          "yAxis": {
+            "label": "CPU Utilization",
+            "scale": "LINEAR"
+          }
+        }
+      },
+      {
+        "title": "Network Traffic by VM",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"compute.googleapis.com/instance/network/received_bytes_count\" resource.type=\"gce_instance\"",
+                  "aggregation": {
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_RATE"
+                  }
+                },
+                "unitOverride": "By/s"
+              },
+              "plotType": "LINE"
+            }
+          ],
+          "yAxis": {
+            "label": "Bytes received per second",
+            "scale": "LINEAR"
+          }
+        }
+      }
+    ]
+  }
+}

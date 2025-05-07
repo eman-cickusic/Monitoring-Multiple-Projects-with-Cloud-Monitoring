@@ -1,0 +1,25 @@
+{
+  "displayName": "Uptime Check Policy",
+  "conditions": [
+    {
+      "displayName": "VM Instance Check Passed",
+      "conditionAbsent": {
+        "filter": "metric.type=\"compute.googleapis.com/instance/uptime_check/check_passed\" resource.type=\"gce_instance\" metric.label.\"check_id\"=\"demogroup-uptime-check-id\"",
+        "duration": "300s",
+        "trigger": {
+          "count": 1
+        },
+        "aggregations": [
+          {
+            "alignmentPeriod": "60s",
+            "perSeriesAligner": "ALIGN_NEXT_OLDER",
+            "crossSeriesReducer": "REDUCE_COUNT",
+            "groupByFields": []
+          }
+        ]
+      }
+    }
+  ],
+  "combiner": "OR",
+  "enabled": true
+}
